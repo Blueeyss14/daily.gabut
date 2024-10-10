@@ -1,14 +1,23 @@
 .navbar {
-    background-color: #27202c;
+    background: #554975;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 20px;
 }
+.navbar h1 {
+    cursor: pointer;
+}
+
 .navbar ul {
     display: flex;
     list-style: none;
 }
 .navbar ul li {
-    padding: 0px 20px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.toggle-icon {
+    font-size: 2rem;
 }
