@@ -1,0 +1,27 @@
+.nav {
+    width: 100%;
+    background-color: tomato;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.nav ul {
+    display: flex;
+    padding: 20px 0;
+
+}
+.nav ul li {
+    list-style: none;
+    padding: 0px 20px;
+}
+.con-body {
+    height: 100vh;
+    width: 3%;
+    background-color: blue;
+    transition: all .5s ease;
+}
+.con-body.tapped {
+    height: 100vh;
+    width: 13%;
+    background-color: blue;
+}
