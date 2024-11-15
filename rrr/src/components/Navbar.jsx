@@ -2,12 +2,19 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import "./navbar.css"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './sidebar'
 
 
 function Navbar() {
-    const [isClicked, setClicked] = useState(false);
+    const [isClicked, setClicked] = useState(() => {
+        const savedState = localStorage.getItem('isClicked');
+        return savedState === 'true';
+    });
+
+    useEffect(() => {
+        localStorage.setItem('isClicked', isClicked);
+    }, [isClicked]);
 
     function click() {
         if (isClicked) {
@@ -20,7 +27,7 @@ function Navbar() {
     return (
         <div>
             <div className='navbar'>
-                <FontAwesomeIcon icon={isClicked ? faXmark : faBars} onClick={click}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={isClicked ? faXmark : faBars} onClick={click} className='icon-menu'></FontAwesomeIcon>
                 <ul>
                     <li>a</li>
                     <li>b</li>
@@ -32,6 +39,5 @@ function Navbar() {
         </div>
     );
 }
-
 
 export default Navbar
