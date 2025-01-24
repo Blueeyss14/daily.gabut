@@ -1,34 +1,33 @@
-import React, { useState } from "react";
-import { ChevronLeft, ChevronRight } from "react-feather";
+import React from 'react'
+
+const clicked = [
+  <button key="button1">Click1</button>,
+  <button key="button2">Click2</button>,
+];
 
 const Carousel = ({ children: pages }) => {
-    const [curr, setCurr] = useState(0);
 
-    const prev = () => setCurr((curr) => (curr === 0 ? pages.length - 1 : curr - 1));
-    const next = () => setCurr((curr) => (curr === pages.length - 1 ? 0 : curr + 1));
+  const scrollToIndex = (index) => {
+    const target = document.querySelectorAll('.page')[index];
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 
-    return (
-        <div className="relative overflow-hidden">
-            <div
-                className="flex transition-transform ease-out duration-300"
-                style={{ transform: `translateX(-${curr * 100}%)` }}
-            >
-                {pages.map((page, index) => (
-                    <div key={index} className="flex-shrink-0 w-full">
-                        {page}
-                    </div>
-                ))}
-            </div>
-            <div className="absolute inset-0 flex items-center justify-between px-4">
-                <button onClick={prev} className="p-2 bg-gray-200 rounded-full">
-                    <ChevronLeft />
-                </button>
-                <button onClick={next} className="p-2 bg-gray-200 rounded-full">
-                    <ChevronRight />
-                </button>
-            </div>
-        </div>
-    );
-};
+  return (
+    <div className='w-full h-screen'>
+      <div className='fixed w-screen h-10 bg-purple-400 justify-evenly flex items-center'>
+        {clicked.map((clik, index) => (
+          <div key={index} onClick={()=> scrollToIndex(index)}>{clik}</div>
+        ))}
+      </div>
+      <div className='flex snap-x snap-mandatory overflow-hidden'>
+        {pages.map((page, index) => (
+          <div key={index} className="page">{page}</div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
-export default Carousel;
+export default Carousel
