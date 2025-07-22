@@ -1,10 +1,10 @@
-import HomePage from "./screens/HomePage";
+import HomeApp from "./screens/HomePage";
 import ClientsPage from "./screens/ClientsPage";
 
 function App() {
   return (
     <div>
-      <HomePage/>
+      <HomeApp/>
       <ClientsPage/>
     </div>
   );

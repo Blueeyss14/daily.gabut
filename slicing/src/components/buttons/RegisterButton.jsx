@@ -1,7 +1,7 @@
-const RegisterButton = () => {
+const RegisterButton = ({className = ""}) => {
   return (
-    <div className="ml-10  bg-greenBtn rounded-[5px]">
-      <h1 className="py-3 px-5 text-white">RegisterNow</h1>
+    <div className={`md:ml-10  bg-greenBtn rounded-[5px] ${className} cursor-pointer`}>
+      <h1 className="py-2 px-4 text-white">RegisterNow</h1>
     </div>
   )
 }
