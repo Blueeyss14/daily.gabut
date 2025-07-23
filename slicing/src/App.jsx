@@ -1,12 +1,11 @@
-import HomeApp from "./screens/HomePage";
-import ClientsPage from "./screens/ClientsPage";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/routes";
 
 function App() {
   return (
-    <div>
-      <HomeApp/>
-      <ClientsPage/>
-    </div>
+    <Router>
+      <AppRoutes/>
+    </Router>
   );
 }
 
