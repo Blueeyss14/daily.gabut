@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import FetchWithoutLazyLoad from "../not called/FetchWithoutLazyLoad";
+import FetchWithLazyLoad from "../not called/FetchWithLazyLoad";
 
 export default function HomeApp() {
   const [selectedPage, setSelectedPage] = useState(0);
@@ -7,12 +9,14 @@ export default function HomeApp() {
   const homeItems = [
     <Home />,
     <Features />,
-    <Community />,
-    <Blog />,
+    <FetchWithoutLazyLoad />,
+    <FetchWithLazyLoad />,
+    // <Community />,
+    // <Blog />,
     <Princing />,
   ];
   return (
-    <div className="w-full h-screen flex flex-col">
+    <div className="flex flex-col">
       <Navbar onItemClick={setSelectedPage}/>
       {homeItems[selectedPage]}
     </div>
@@ -22,7 +26,8 @@ export default function HomeApp() {
 
 const Home = () => {
   return (
-    <div className="flex-1 bg-homeBg flex items-center justify-center">
+    <div className="w-full h-screen flex flex-col">
+          <div className="flex-1 bg-homeBg flex items-center justify-center ">
       <div className="mr-20">
         <h1 className="text-5xl font-bold text-gray-600 mb-5">
           Lessons and insights
@@ -34,13 +39,32 @@ const Home = () => {
       </div>
       <img src="assets/illust.png" className="w-100 h-100" />
     </div>
+    </div>
+
   );
 };
 
+//get
 const Features = () => {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+        const data = await res.json();
+        setTodos(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchTodos();
+  }, []
+);
+
   return (
-    <div className="flex-1 bg-homeBg flex items-center justify-center">
-      <h1>Features Page</h1>
+    <div className=" bg-homeBg flex flex-col">
+      {todos.map((todo) => <h1>{`${todo.id} ${todo.title}`}</h1>)}
     </div>
   );
 };

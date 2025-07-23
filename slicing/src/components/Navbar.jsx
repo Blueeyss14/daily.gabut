@@ -11,7 +11,7 @@ export default function Navbar({ onItemClick }) {
     <div className="flex md:justify-between pl-10 md:items-center py-5 md:px-20 bg-white flex-col md:flex-row">
       <img src="assets/Logo.png" className="hidden md:block" />
 
-      {/* Mobile: Burger icon */}
+      {/* Mobile Menu Icon*/}
       <div className={`w-auto ${isClicked ? 'h-auto' : 'h-auto'} flex flex-col justify-evenly md:hidden overflow-hidden transition-all`}>
         <IconMenu className={`block md:hidden text-2xl ${isClicked ? 'mb-3' : 'mb-0'} cursor-pointer`} onClick={() => setIsClicked(!isClicked)} />
             {isClicked && navItems.map((item, index) => (
